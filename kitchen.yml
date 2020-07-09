@@ -1,0 +1,35 @@
+---
+driver:
+  name: vagrant
+  vagrantfiles:
+    - Vagrantfile
+
+provisioner:
+  name: ansible_playbook
+  hosts:
+    - freebsd-backup
+    - ubuntu-backup
+  ansible_verbose: true
+  ansible_version: latest
+  require_pip: true
+  require_chef_for_busser: false
+  additional_ssh_private_keys:
+  - ~/.ssh/id_ed25519
+
+platforms:
+  - name: freebsd
+    driver_plugin: vagrant
+    driver_config:
+      box: generic/freebsd12
+      hostname: freebsd-backup
+    provisioner:
+      custom_pre_install_command: sudo pkg install -y py37-pip
+
+  - name: ubuntu
+    driver_plugin: vagrant
+    driver_config:
+      box: generic/ubuntu2004
+      hostname: ubuntu-backup
+
+suites:
+  - name: backup

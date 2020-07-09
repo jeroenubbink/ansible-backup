@@ -1,0 +1,7 @@
+---
+  - hosts: freebsd-backup
+    tasks:
+      - name: install syncthing
+        pkgng:
+          name: syncthing
+          state: latest
