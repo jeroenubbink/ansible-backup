@@ -12,8 +12,11 @@ export VAGRANT_DEFAULT_PROVIDER=libvirt
 
 ## Installation ##
 
-git clone this
-`bundle`
+git clone this repo
+
+```bash
+bundle
+```
 
 ## Testing ##
 
